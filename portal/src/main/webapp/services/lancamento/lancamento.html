@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>A7</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="format-detection" content="telephone=yes"/>
+ <link rel="Shortcut Icon" href="/portal/img/icons/logo_red.ico">
+ <link rel="apple-touch-icon" href="/portal/img/icons/logo_red.ico"/>
+ <link rel="stylesheet" href="/portal/css/style.css"/>
+ <script type="text/javascript" src="/portal/js/main.js"></script>
+<script type="text/javascript">
+function lancamentoOnload(){
+
+ if(sessionStorage.getItem('tipo')==3){
+  document.getElementById('consultarLancamentoFR').idUsuario.value = sessionStorage.getItem('id');
+  document.getElementById('consultarLancamentoFR').idUsuario.disabled = true;
+ } 
+}
+</script>
+</head>
+
+<body onload="lancamentoOnload();">
+ <img class="logo" src="/portal/img/logo5.png"/>
+ <header><a href="#"><img class="menu" src="/portal/img/icons/arrow-l-white.png" align="right" onclick="javascript:window.history.back();"/></a></header>
+ <div id="msg" class="msg"></div>
+   
+   <form id="consultarLancamentoFR" action="javascript:rest('listar','\\lancamento\\listar','POST',document.getElementById('consultarLancamentoFS'),true);" autocomplete="on">
+    <fieldset id="consultarLancamentoFS">
+     <legend>Lançamentos</legend>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Número <input type="number" name="idLancamento"/></label>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tipo 
+       <select name="tipoLancamento">
+        <option value ="" selected>Todos</option>
+        <option value ="1">Receber</option>
+        <option value ="2">Pagar</option>
+       </select>
+      </label>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status 
+       <select name="statusLancamento">
+        <option value ="" selected>Todos</option>
+        <option value ="1">Aberto</option>
+        <option value ="2">Fechado</option>
+        <option value ="3">Atrazado</option>
+       </select>
+      </label>
+     <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inclusão <input type="date" name="inclusaoLancamento"/></label>
+     <label>Fornecedor 
+      <select name="idFornecedor">
+       <option value ="" selected>Todos</option>
+       <option value ="1">A</option>
+       <option value ="2">B</option>
+      </select>
+     </label>
+     <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuário <input type="number" name='idUsuario'/></label>
+    </fieldset>
+    <div class="bts"><input type="submit" value="Pesquisar" /></div>
+   </form>
+   <div id="grid" class="grid"></div>
+ <footer><i>Lello * Todos direitos reservados.</i><progress id="progress_bar" value="0" max="100"></progress></footer>
+</body>
+   
+</html>

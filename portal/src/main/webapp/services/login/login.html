@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Lello</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=yes"/>
+<link rel="Shortcut Icon" href="/portal/img/icons/logo_red.ico">
+<link rel="apple-touch-icon" href="/portal/img/icons/logo_red.ico"/>
+<link rel="stylesheet" href="/portal/css/main.css"/>
+<script type="text/javascript" src="/portal/lang/pt_BR.js"></script>
+<script type="text/javascript" src="/portal/js/main.js"></script>
+<script type="text/javascript">
+
+function return_() {
+  
+ list = JSON.parse(xhr.responseText);
+
+ if(list.length > 0){
+  document.cookie = "id="+list[0].idUsuario+";token="+list[0].token;
+  sessionStorage.setItem("user", list[0]);
+
+  if(network!=null){
+   sessionStorage.setItem("device",network.computerName);
+   sessionStorage.setItem("domain",network.UserDomain);
+  }
+  window.location.href = '/portal/services/index.html';
+    
+ }else {
+  msgStyle("msgError",lang_msg_error_user_or_password_invalid);
+ }
+}
+</script>
+</head>
+
+<body><!-- onload="include();" -->
+ <img class="logo" src="/portal/img/logo5.png"/>
+ <header></header>
+ <div id="msg" class="msg"></div>
+   <form id="loginFR" action="javascript:rest('return','\\user\\list','POST',document.getElementById('loginFS'),true);" autocomplete="on">
+    <fieldset id="loginFS">
+     <legend>Entrar</legend>
+      <label>Usuário <input type="text" name="name" autofocus required /></label> 
+      <label>&nbsp;&nbsp;Senha <input type="password" name="password" required /></label>
+    </fieldset>
+    <div class="bts">
+     <input type="submit" value="Entrar"/>
+    </div>
+   </form>
+
+   <nav class="nav_footer">
+    <a href="/portal/services/login/register.html" class="nav_footer_a"> Cadastrar </a>|
+    <a href="/portal/services/login/rescue_password.html" class="nav_footer_a"> Esqueci minha senha </a>|
+    <a href="#" class="nav_footer_a"> Instalar o App </a>
+   </nav>
+
+ <footer><i>Lello * Todos direitos reservados.</i><progress id="progress_bar" value="0" max="100"></progress></footer>
+</body>
+</html>

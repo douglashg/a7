@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+ <title>A7</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="format-detection" content="telephone=yes"/>
+ <link rel="Shortcut Icon" href="/portal/img/icons/logo_red.ico">
+ <link rel="apple-touch-icon" href="/portal/img/icons/logo_red.ico"/>
+ <link rel="stylesheet" href="/portal/css/main.css"/>
+ <script type="text/javascript" src="/portal/js/main.js"></script>
+<script type="text/javascript">
+function return_() {
+
+ if(form.id ==='userFS') {
+  if(xhr.status > 199 && xhr.status < 300){
+	document.getElementById('userFR').style.display='none';
+    document.getElementById('confirmationFR').style.display='block';
+  }else {
+	msgStyle("msgErro",lang_msg_error_insert);
+  }
+ }else if(form.id ==='confirmationFS'){
+  if(xhr.status > 199 && xhr.status < 300){
+   document.getElementById('confirmationFR').style.display='none';
+   document.getElementById('personFR').style.display='block';
+  }else {
+   msgStyle("msgErro",lang_msg_error_confirmation);
+  }
+ }else if(form.id ==='personFS'){
+  if(xhr.status > 199 && xhr.status < 300){
+   window.location.href ="/portal/services/login/login.html"
+  }else {
+   msgStyle("msgErro",lang_msg_error_insert);
+  }
+ }
+}
+
+</script>
+</head>
+
+<body>
+ <img class="logo" src="/portal/img/logo5.png"/>
+ <header></header>
+ <div id="msg" class="msg"></div>
+   
+   <form id="userFR" action="javascript:rest('return','\\user','POST',document.getElementById('userFS'),true);" autocomplete="on">
+    <fieldset id="userFS">
+     <legend>Cadastrar</legend>
+      <label>Usuário <input type="text" name="name" onblur="if_exist('name',this);" autofocus required /></label> 
+      <label>&nbsp;&nbsp;Senha <input type="password" name="password" required onblur="required(this);" /></label>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPF <input type="text" name="identification" onblur="if_exist('user',this);" required /></label>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;País <input type="number" name="country"  alt="Código internacianal do País" onblur="required(this);" required /></label>
+      <label>&nbsp;&nbsp;&nbsp;&nbsp;DDD <input type="number" name="ddd" alt="DDD" onblur="required(this);" required /></label>
+      <label>&nbsp;Celular <input type="number" name="mobile" onblur="if_exist('mobile',this);" required /></label>
+      <label>&nbsp;&nbsp;&nbsp;Email <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" onblur="if_exist('email',this);" required /></label>
+      <input name="tipoUsuario" type="hidden" value="3" />
+    </fieldset>
+    <div class="bts"><input type="submit" value="Cadastrar"/></div>
+   </form>
+   
+   <form id="confirmationFR" action="#" autocomplete="off" style="display: none;">
+    <fieldset id="confirmationFS">
+     <legend>Confirmação das Chaves do celular e email</legend>
+      <label>&nbsp;SMS <input type="number" name="chave_sms" autofocus onblur="required(this);" required /></label>
+      <label>Email <input type="number" name="chave_email" onblur="required(this);" required /></label>
+    </fieldset>
+    <div class="bts"><input type="button" value="Validar"/></div>
+   </form>
+   
+   <form id="personFR" action="javascript:person(document.getElementById('personFS'));" autocomplete="on" style="display: none;">
+    <fieldset id="pessoaFS">
+     <legend>Dados Pessoais</legend>
+      <label>&nbsp;&nbsp;Nome <input type="text" name="nome" autofocus onblur="obrigatorio(this);" required /></label> 
+      <label>Nascimento <input type="date" name="nascimento" onblur="obrigatorio(this);" required /></label>
+    </fieldset>
+    <div class="bts"><input type="submit" value="Cadastrar"/></div>
+   </form>
+
+ <footer><i>Lello * Todos direitos reservados.</i><progress id="progress_bar" value="0" max="100"></progress></footer>
+</body>
+   
+</html>

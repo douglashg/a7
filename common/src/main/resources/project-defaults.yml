@@ -1,0 +1,17 @@
+swarm:
+  datasources:
+    jdbc-drivers:
+      postgres:
+        driver-class-name: org.postgresql.Driver
+        xa-datasource-class-name: org.postgresql.xa.PGXADataSource
+        driver-module-name: org.postgresql
+    data-sources:
+      commonDS:
+        jndi-name: java:/commonDS
+        driver-name: postgres
+        connection-url: jdbc:postgresql://localhost:5432/a7
+        user-name: a7
+        password: qazwsx!1
+        transaction-isolation: "TRANSACTION_READ_COMMITTED"
+      
+    
